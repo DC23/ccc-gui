@@ -37,26 +37,14 @@ class PlotFrame(ttk.Frame):
     """
     ccc-gui plot frame. Encapsulates all the plotting functionality.
 
-    Although this is a large class, there are just 2 key attributes that
-    control the model outputs that can be viewed on the plot.
-    The `__input_plot_items` list (initialised in `__init__`) determines
-    the `sambuca_core.ForwardModelResults` items that can be plotted in
-    Input Parameter mode. Similarly, the `__siop_plot_items` list
-    (also initialised in `__init__`) determines the items that can be plotted
-    in SIOP mode.
-
     Attributes:
         __current_plot_mode (PLOT_MODES): The current plot mode.
-        __input_plot_items (list): The list of model outputs that can be plotted
-            in 'input' mode.
-        __siop_plot_items (list): The list of model outputs that can be plotted
-            in 'siop' mode.
-        __sensor_response_overlay_name (str): The selected sensor response
-            function.
-        __sensor_response_overlay_type (str): Selects the sensor response
-            overlay type.
-        __input_options (ttk.Frame): The parameter plot options frame.
-        __siop_options (ttk.Frame): The siop plot options frame.
+        __single_car_plot_items (list): The list of model outputs that can 
+            be plotted in 'SINGLE_CAR' mode.
+        __multi_car_plot_items (list): The list of model outputs that can be 
+            plotted in 'MULTI_CAR' mode.
+        __single_car_options (ttk.Frame): The single-car options frame.
+        __multi_car_options (ttk.Frame): The multi-car options frame.
     """
 
     # Disabling the too-few-public-methods warning, as I find this small class
@@ -133,7 +121,7 @@ class PlotFrame(ttk.Frame):
 
         Args:
             parent (tk.frame): the parent tk window or frame.
-            model (ccc-gui.Model): The bioopti data model.
+            model (ccc-gui.Model): The data model.
             plot_options (PlotOptions): matplotlib specific options
                 for the plot window.
         """
@@ -145,9 +133,6 @@ class PlotFrame(ttk.Frame):
 
         self.__plot_options = plot_options
         self.__current_plot_mode = None
-        self.__sensor_response_overlay_name = None
-        self.__sensor_response_overlay_type = None
-        # self.__siop_plot_mode = None
 
         self.__multi_car_plot_items = [
             PlottableResultDef('a', 'a', initial_value=True),
@@ -158,12 +143,6 @@ class PlotFrame(ttk.Frame):
             PlottableResultDef('a CDOM*', 'a_cdom_star'),
             PlottableResultDef('a NAP', 'a_nap'),
             PlottableResultDef('a NAP*', 'a_nap_star'),
-            PlottableResultDef('bb', 'bb', initial_value=True),
-            PlottableResultDef('bb water', 'bb_water'),
-            PlottableResultDef('bb ph', 'bb_ph'),
-            PlottableResultDef('bb ph*', 'bb_ph_star'),
-            PlottableResultDef('bb nap', 'bb_nap'),
-            PlottableResultDef('bb nap*', 'bb_nap_star'),
         ]
 
         # create the data-driven list of Input-mode plot items
