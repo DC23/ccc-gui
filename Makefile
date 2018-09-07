@@ -1,5 +1,5 @@
 SHELL=/bin/sh
-PACKAGE_NAME=car_cost_calculator
+PACKAGE_NAME=ccc_gui
 
 .SILENT:
 .IGNORE:

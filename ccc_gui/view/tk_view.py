@@ -22,8 +22,7 @@ from tkinter import (
 from .single_car_frame import SingleCarFrame
 from .plot_frame import PlotFrame
 
-class TkView(object):
-
+class TkView():
     """ Main Tk view.
 
     Attributes:
@@ -32,7 +31,7 @@ class TkView(object):
         __controller_event_handlers (dict): Dictionary of registered
             controller event handlers.
         __root: The root Tk window.
-        __input_data_notebook (ttk.Notebook): Notebook used to hold the input
+        __notebook (ttk.Notebook): Notebook used to hold the input
             parameter frames.
         __plot_frame (PlotFrame): The plot frame.
         __plot_mode (dictionary): Maps the tab names to a plot mode.
@@ -373,11 +372,12 @@ class TkView(object):
         Args:
             description (str): A short text description of the changed data.
         """
-        try:
-            if self.__live_update.get():
-                self.__notify_update_request()
-        except:
-            pass
+        # TODO: does this need a bare exception handler?
+        # try:
+        if self.__live_update.get():
+            self.__notify_update_request()
+        # except:
+            # pass
 
     def push_values_to_model(self, model):
         """ Pushes all modifiable values back into the model.

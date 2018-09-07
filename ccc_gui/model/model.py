@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
 """ Main model class """
 
-
-# standard library imports
 import logging
 
-# third-party library imports
 # import car_cost_calculator  # for the version number
 
-# local package imports
 # from ..exceptions import ModelValidationError
 
 
 # pylint: disable=too-few-public-methods
-class Model(object):
+class Model():
     """ Main data model class
     """
 
@@ -24,6 +20,9 @@ class Model(object):
         Args:
             options: the program options.
         """
+        assert options
+        # TODO: add cost model object
+        self.__hack = None
         log = logging.getLogger(__name__)
         log.info('Initialising model')
 
@@ -32,5 +31,6 @@ class Model(object):
         """
         logger = logging.getLogger(__name__)
         logger.debug('Model calculating...')
+        self.__hack = None
 
 # pylint: enable=too-few-public-methods

@@ -4,13 +4,15 @@ TK frame class that encapsulates the plot window.
 """
 
 # Disable some pylint warnings caused by tkinter
-# pylint: disable=unused-wildcard-import
-# pylint: disable=redefined-builtin
-# pylint: disable=wildcard-import
-# pylint: disable=unused-import
+# pylint: disable=C0413, C0103
 
 import logging
 from collections import namedtuple
+from tkinter import (
+    BooleanVar,
+    StringVar,
+    ttk,
+)
 
 import numpy as np
 import matplotlib
@@ -24,11 +26,6 @@ from matplotlib.backends.backend_tkagg import (
     NavigationToolbar2TkAgg,
 )
 from matplotlib.figure import Figure, SubplotParams
-from tkinter import (
-    BooleanVar,
-    StringVar,
-    ttk,
-)
 
 from .utilities import recursive_grid_configure
 from .plottable_result_def import PlottableResultDef
@@ -66,7 +63,7 @@ class PlotFrame(ttk.Frame):
     # cleaner than named tuples or dictionaries for encapsulating both the
     # default values and the ability to hold user-values.
     # pylint: disable=too-few-public-methods
-    class PlotOptions(object):
+    class PlotOptions():
         """ matplotlib specific options for PlotFrame."""
 
         def __init__(self,

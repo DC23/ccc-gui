@@ -3,16 +3,10 @@
 Utility class for binding a display name, a model result, and a Tk checkbox.
 """
 
-# Disable some pylint warnings caused by future and tkinter
-# pylint: disable=unused-wildcard-import
-# pylint: disable=redefined-builtin
-# pylint: disable=wildcard-import
-# pylint: disable=unused-import
-# pylint: disable=too-many-ancestors
 # Disabling the too-few-public-methods warning, as I find this small class
 # cleaner than named tuples or dictionaries
 # pylint: disable=too-few-public-methods
-class PlottableResultDef(object):
+class PlottableResultDef():
     """ This class is used to define a plottable result, by binding
     a display name, a Tk checkbox, and a named model result.
 
