@@ -5,11 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File (Integrated Terminal)",
+            "name": "Python: run GUI",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
+            "program": "ide_run.py",
+            "console": "integratedTerminal",
+            "args": [
+            ]
         },
         {
             "name": "Python: Attach",

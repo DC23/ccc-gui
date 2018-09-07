@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" Main Tk view for BioOpti """
+""" Main Tk view """
 
 # Disable some pylint warnings caused by future and tkinter
 # pylint: disable=unused-wildcard-import
@@ -7,14 +7,6 @@
 # pylint: disable=wildcard-import
 
 # Ensure backwards compatibility with Python 2
-from __future__ import (
-    absolute_import,
-    division,
-    print_function,
-    unicode_literals,
-)
-from builtins import *
-
 import logging
 from collections import namedtuple
 
@@ -78,7 +70,7 @@ class TkView(object):
 
         # create the root window, with resizeable first column and row
         self.__root = Tk()
-        self.__root.title('BioOpti')
+        self.__root.title('Car Cost Calculator')
         self.__root.columnconfigure(0, weight=1)
         self.__root.rowconfigure(0, weight=1)
         default_padding = '5'

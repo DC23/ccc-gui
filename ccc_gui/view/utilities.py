@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Utility functions for the Optiflow views.
+Utility functions for the views.
 
-These are not in the bioopti.utility module as they are specific to the View.
+These are not in the ccc-gui.utility module as they are specific to the View.
 """
 
 # Disable some pylint warnings caused by future and tkinter
@@ -10,15 +10,6 @@ These are not in the bioopti.utility module as they are specific to the View.
 # pylint: disable=redefined-builtin
 # pylint: disable=wildcard-import
 # pylint: disable=too-many-ancestors
-
-# Ensure backwards compatibility with Python 2
-from __future__ import (
-    absolute_import,
-    division,
-    print_function,
-    unicode_literals,
-)
-from builtins import *
 
 import logging
 from tkinter import TclError

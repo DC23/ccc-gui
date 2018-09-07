@@ -25,7 +25,6 @@ from tkinter import (
     ttk,
 )
 
-from .three_mode_range import ThreeModeRange
 from .utilities import recursive_grid_configure
 
 
@@ -145,40 +144,40 @@ class SiopFrame(ttk.Frame):
         frame = ttk.LabelFrame(self, text='Phytoplankton')
         frame.columnconfigure(1, weight=1)
 
-        row = 0
-        col = 0
+        # row = 0
+        # col = 0
 
-        # a* spectra
-        self.__init_a_ph_star_selection()
+        # # a* spectra
+        # self.__init_a_ph_star_selection()
 
-        row += 1
-        col = 0
+        # row += 1
+        # col = 0
 
-        self.__phyt_bbstar_slope = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='bb* Slope',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['phyt_bbstar_slope'])
-        self.__phyt_bbstar_slope.grid(
-            row=row,
-            column=col,
-            columnspan=3,
-            sticky='NSWE')
+        # self.__phyt_bbstar_slope = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='bb* Slope',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['phyt_bbstar_slope'])
+        # self.__phyt_bbstar_slope.grid(
+        #     row=row,
+        #     column=col,
+        #     columnspan=3,
+        #     sticky='NSWE')
 
-        row += 1
+        # row += 1
 
-        self.__phyt_bbstar_ref = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='bb* at lambda0x',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['phyt_bbstar_ref'])
-        self.__phyt_bbstar_ref.grid(
-            row=row,
-            column=col,
-            columnspan=2,
-            sticky='NSWE')
+        # self.__phyt_bbstar_ref = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='bb* at lambda0x',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['phyt_bbstar_ref'])
+        # self.__phyt_bbstar_ref.grid(
+        #     row=row,
+        #     column=col,
+        #     columnspan=2,
+        #     sticky='NSWE')
 
         return frame
 
@@ -247,26 +246,26 @@ class SiopFrame(ttk.Frame):
         frame = ttk.LabelFrame(self, text='CDOM')
         frame.columnconfigure(0, weight=1)
 
-        row = 0
-        col = 0
+        # row = 0
+        # col = 0
 
-        self.__cdom_astar_slope = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='a* Slope',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['cdom_astar_slope'])
-        self.__cdom_astar_slope.grid(row=row, column=col, sticky='NSWE')
+        # self.__cdom_astar_slope = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='a* Slope',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['cdom_astar_slope'])
+        # self.__cdom_astar_slope.grid(row=row, column=col, sticky='NSWE')
 
-        row += 1
+        # row += 1
 
-        self.__cdom_astar_ref = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='a* at lambda0-cdom',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['cdom_astar_ref'])
-        self.__cdom_astar_ref.grid(row=row, column=col, sticky='NSWE')
+        # self.__cdom_astar_ref = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='a* at lambda0-cdom',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['cdom_astar_ref'])
+        # self.__cdom_astar_ref.grid(row=row, column=col, sticky='NSWE')
 
         return frame
 
@@ -284,46 +283,46 @@ class SiopFrame(ttk.Frame):
         frame = ttk.LabelFrame(self, text='NAP')
         frame.columnconfigure(0, weight=1)
 
-        row = 0
-        col = 0
+        # row = 0
+        # col = 0
 
-        self.__nap_astar_slope = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='a* Slope',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['nap_astar_slope'])
-        self.__nap_astar_slope.grid(row=row, column=col, sticky='NSWE')
+        # self.__nap_astar_slope = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='a* Slope',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['nap_astar_slope'])
+        # self.__nap_astar_slope.grid(row=row, column=col, sticky='NSWE')
 
-        row += 1
+        # row += 1
 
-        self.__nap_astar_ref = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='a* at lambda0-nap',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['nap_astar_ref'])
-        self.__nap_astar_ref.grid(row=row, column=col, sticky='NSWE')
+        # self.__nap_astar_ref = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='a* at lambda0-nap',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['nap_astar_ref'])
+        # self.__nap_astar_ref.grid(row=row, column=col, sticky='NSWE')
 
-        row += 1
+        # row += 1
 
-        self.__nap_bbstar_slope = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='bb* Slope',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['nap_bbstar_slope'])
-        self.__nap_bbstar_slope.grid(row=row, column=col, sticky='NSWE')
+        # self.__nap_bbstar_slope = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='bb* Slope',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['nap_bbstar_slope'])
+        # self.__nap_bbstar_slope.grid(row=row, column=col, sticky='NSWE')
 
-        row += 1
+        # row += 1
 
-        self.__nap_bbstar_ref = ThreeModeRange(
-            frame,
-            self.__data_changed,
-            text='bb* at lambda0x',
-            text_width=self.__three_mode_text_width,
-            bounded_value=model.bounded_values['nap_bbstar_ref'])
-        self.__nap_bbstar_ref.grid(row=row, column=col, sticky='NSWE')
+        # self.__nap_bbstar_ref = ThreeModeRange(
+        #     frame,
+        #     self.__data_changed,
+        #     text='bb* at lambda0x',
+        #     text_width=self.__three_mode_text_width,
+        #     bounded_value=model.bounded_values['nap_bbstar_ref'])
+        # self.__nap_bbstar_ref.grid(row=row, column=col, sticky='NSWE')
 
         return frame
 
@@ -333,22 +332,23 @@ class SiopFrame(ttk.Frame):
         Args:
             model (bioopti.Model): The bioopti data model.
         """
-        model.bounded_values['phyt_bbstar_slope']['values'] = \
-            self.__phyt_bbstar_slope.values
-        model.bounded_values['phyt_bbstar_ref']['values'] = \
-            self.__phyt_bbstar_ref.values
-        model.bounded_values['cdom_astar_slope']['values'] = \
-            self.__cdom_astar_slope.values
-        model.bounded_values['cdom_astar_ref']['values'] = \
-            self.__cdom_astar_ref.values
-        model.bounded_values['nap_astar_slope']['values'] = \
-            self.__nap_astar_slope.values
-        model.bounded_values['nap_astar_ref']['values'] = \
-            self.__nap_astar_ref.values
-        model.bounded_values['nap_bbstar_slope']['values'] = \
-            self.__nap_bbstar_slope.values
-        model.bounded_values['nap_bbstar_ref']['values'] = \
-            self.__nap_bbstar_ref.values
+        # model.bounded_values['phyt_bbstar_slope']['values'] = \
+        #     self.__phyt_bbstar_slope.values
+        # model.bounded_values['phyt_bbstar_ref']['values'] = \
+        #     self.__phyt_bbstar_ref.values
+        # model.bounded_values['cdom_astar_slope']['values'] = \
+        #     self.__cdom_astar_slope.values
+        # model.bounded_values['cdom_astar_ref']['values'] = \
+        #     self.__cdom_astar_ref.values
+        # model.bounded_values['nap_astar_slope']['values'] = \
+        #     self.__nap_astar_slope.values
+        # model.bounded_values['nap_astar_ref']['values'] = \
+        #     self.__nap_astar_ref.values
+        # model.bounded_values['nap_bbstar_slope']['values'] = \
+        #     self.__nap_bbstar_slope.values
+        # model.bounded_values['nap_bbstar_ref']['values'] = \
+        #     self.__nap_bbstar_ref.values
+        pass
 
     def pull_values_from_model(self, model):
         """ Pulls all output values from the model.

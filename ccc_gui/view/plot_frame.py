@@ -38,7 +38,7 @@ from .plottable_result_def import PlottableResultDef
 class PlotFrame(ttk.Frame):
 
     """
-    BioOpti plot frame. Encapsulates all the plotting functionality.
+    ccc-gui plot frame. Encapsulates all the plotting functionality.
 
     Although this is a large class, there are just 2 key attributes that
     control the model outputs that can be viewed on the plot.
@@ -67,8 +67,7 @@ class PlotFrame(ttk.Frame):
     # default values and the ability to hold user-values.
     # pylint: disable=too-few-public-methods
     class PlotOptions(object):
-
-        """matplotlib specific options for PlotFrame."""
+        """ matplotlib specific options for PlotFrame."""
 
         def __init__(self,
                      width=5,
@@ -133,17 +132,15 @@ class PlotFrame(ttk.Frame):
             plot_options=None,
             **kwargs):
         """
-        Create a BioOpti plot frame.
+        Create a plot frame.
 
         Args:
             parent (tk.frame): the parent tk window or frame.
-            model (bioopti.Model): The bioopti data model.
+            model (ccc-gui.Model): The bioopti data model.
             plot_options (PlotOptions): matplotlib specific options
                 for the plot window.
         """
-
         logging.getLogger(__name__).debug('Initialising plotting')
-
         ttk.Frame.__init__(self, parent, **kwargs)
 
         if not plot_options:
@@ -184,7 +181,6 @@ class PlotFrame(ttk.Frame):
             ]
 
         self.__model = model
-        self.__sensor_filters = model.sensor_filters
 
         plot_row = 4
         self.grid()
@@ -405,14 +401,14 @@ class PlotFrame(ttk.Frame):
         col += 1
 
         # Sensor filters
-        filter_names = list(self.__sensor_filters.keys())
-        filter_names.sort()
+        # filter_names = list(self.__sensor_filters.keys())
+        # filter_names.sort()
         self.__sensor_response_overlay_name = StringVar()
-        self.__sensor_response_overlay_name.set(filter_names[0])
+        # self.__sensor_response_overlay_name.set(filter_names[0])
         combo = ttk.Combobox(
             overlay_frame,
             textvariable=self.__sensor_response_overlay_name)
-        combo['values'] = filter_names
+        # combo['values'] = filter_names
         combo.state(['readonly'])
         combo.bind('<<ComboboxSelected>>', sensor_filter_overlay_changed)
         combo.grid(row=row, column=col, sticky='NE')
@@ -582,7 +578,9 @@ class PlotFrame(ttk.Frame):
         axes = self.__figure.add_subplot(111)
         self.__refresh_overlay()
 
-        if self.__model.results:
+        # if self.__model.results:
+        # TODO: enable plots
+        if False:
             self.__refresh_result_plots()
 
             # make room for the legend, and place it to the right

@@ -6,7 +6,7 @@
 import logging
 
 # third-party library imports
-import car_cost_calculator  # for the version number
+# import car_cost_calculator  # for the version number
 
 # local package imports
 # from ..exceptions import ModelValidationError
@@ -17,9 +17,12 @@ class Model(object):
     """ Main data model class
     """
 
-    def __init__(self):
+    def __init__(self, options):
         """
         Initialise the model.
+
+        Args:
+            options: the program options.
         """
         log = logging.getLogger(__name__)
         log.info('Initialising model')

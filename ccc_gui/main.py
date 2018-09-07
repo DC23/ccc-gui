@@ -31,8 +31,17 @@ def __get_options():
         help='CCC GUI configuration file.')
 
     parser.add(
+        '-lc',
+        '--logging-config',
+        required=False,
+        default='bioopti_logging.cfg',
+        metavar='FILE',
+        help='Logging configuration file.')
+
+    parser.add(
         '-nce',
         '--no-confirm-exit',
+        required=False,
         default=False,
         action='store_true',
         help='Disables the exit confirmation dialog.')

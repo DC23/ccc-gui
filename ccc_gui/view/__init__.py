@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-""" BioOpti View module
+""" ccc-gue View module
 
-    Encapsulates the view logic for BioOpti
+    Encapsulates the view logic
 """
 
 from .tk_view import TkView
