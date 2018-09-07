@@ -74,7 +74,8 @@ class TkView(object):
         self.__root.rowconfigure(0, weight=1)
         default_padding = '5'
 
-        self.__init_main_menu()
+        # TODO: reenable main menu if I want one
+        # self.__init_main_menu()
 
         sizegrip = ttk.Sizegrip(self.__root)
         sizegrip.grid(row=999, column=0, sticky='SE', padx=0, pady=0)
@@ -304,10 +305,6 @@ class TkView(object):
         menu_file = Menu(main_menu)
 
         menu_file.add_command(
-            label='Save Current Results',
-            command=self.__notify_save_request)
-
-        menu_file.add_command(
             label='Exit',
             command=self.__close_request_handler)
 
@@ -316,8 +313,6 @@ class TkView(object):
         # help menu
         menu_help = Menu(main_menu)
         main_menu.add_cascade(menu=menu_help, label='Help')
-
-        # TODO: special handling for platform-specific system menus
 
     def run(self):
         """
