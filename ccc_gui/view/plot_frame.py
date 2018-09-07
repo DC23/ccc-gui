@@ -152,7 +152,7 @@ class PlotFrame(ttk.Frame):
         self.__sensor_response_overlay_type = None
         # self.__siop_plot_mode = None
 
-        self.__siop_plot_items = [
+        self.__multi_car_plot_items = [
             PlottableResultDef('a', 'a', initial_value=True),
             PlottableResultDef('a Water', 'a_water'),
             PlottableResultDef('a Phyt', 'a_ph'),
@@ -170,7 +170,7 @@ class PlotFrame(ttk.Frame):
         ]
 
         # create the data-driven list of Input-mode plot items
-        self.__input_plot_items = [
+        self.__single_car_plot_items = [
             PlottableResultDef('rrs', 'rrs', initial_value=True),
             PlottableResultDef('rrsdp', 'rrsdp'),
             PlottableResultDef('R(0-)', 'r_0_minus'),
@@ -255,11 +255,11 @@ class PlotFrame(ttk.Frame):
             column (int): the first column to use.
         """
 
-        self.__single_car_options = self.__init_input_options_frame()
+        self.__single_car_options = self.__init_single_car_options_frame()
         self.__single_car_options.grid(row=row, column=column, sticky='NSEW')
         row += 1
 
-        self.__multi_car_options = self.__init_siop_options_frame()
+        self.__multi_car_options = self.__init_multi_car_options_frame()
         self.__multi_car_options.grid(row=row, column=column, sticky='NSEW')
 
     def __create_checkbutton(self, parent, text, value=False):
@@ -327,10 +327,9 @@ class PlotFrame(ttk.Frame):
                 col = start_col
                 row += 1
 
-    def __init_input_options_frame(self):
+    def __init_single_car_options_frame(self):
         """
-        Initialises the parameter input options frame,
-        used in parameter input mode.
+        Initialises the single-car mode options frame
         """
 
         # frame to hold the options together
@@ -344,125 +343,16 @@ class PlotFrame(ttk.Frame):
 
         self.__generate_plottable_item_controls(
             option_frame,
-            self.__input_plot_items,
+            self.__single_car_plot_items,
             items_per_row=8)
 
         recursive_grid_configure(option_frame, padx=5, pady=5)
-
-        # ----------------------------------------
-        # create the overlay controls
-        # wrap the overlay in a frame so they have different column indices to
-        # the checkbuttons, and set the columnspan to a large enough number that
-        # it will always span all the checkbuttons.
-        overlay_frame = ttk.LabelFrame(frame, text='Overlay')
-        overlay_frame.grid(row=1, column=0, columnspan=99, sticky='NSEW')
-
-        def sensor_filter_overlay_changed(_=None):
-            """ Overlay radio button changed handler """
-            logging.getLogger(__name__).debug(
-                'Selected Overlay: %s Type: %s',
-                self.__sensor_response_overlay_name.get(),
-                self.__sensor_response_overlay_type.get())
-            self.__refresh_figure()
-
-        row = 1
-        col = 0
-
-        # __sensor_response_overlay_type holds the overlay selection string
-        self.__sensor_response_overlay_type = StringVar()
-        # set the default overlay to none
-        self.__sensor_response_overlay_type.set('none')
-
-        radio = ttk.Radiobutton(
-            overlay_frame,
-            text='None',
-            variable=self.__sensor_response_overlay_type,
-            value='none',
-            command=sensor_filter_overlay_changed)
-        radio.grid(row=row, column=col, sticky='NW')
-        col += 1
-
-        radio = ttk.Radiobutton(
-            overlay_frame,
-            text='Response Function',
-            variable=self.__sensor_response_overlay_type,
-            value='response',
-            command=sensor_filter_overlay_changed)
-        radio.grid(row=row, column=col, sticky='NW')
-        col += 1
-
-        radio = ttk.Radiobutton(
-            overlay_frame,
-            text='Band Average',
-            variable=self.__sensor_response_overlay_type,
-            value='band_avg',
-            command=sensor_filter_overlay_changed)
-        radio.grid(row=row, column=col, sticky='NW')
-        col += 1
-
-        # Sensor filters
-        # filter_names = list(self.__sensor_filters.keys())
-        # filter_names.sort()
-        self.__sensor_response_overlay_name = StringVar()
-        # self.__sensor_response_overlay_name.set(filter_names[0])
-        combo = ttk.Combobox(
-            overlay_frame,
-            textvariable=self.__sensor_response_overlay_name)
-        # combo['values'] = filter_names
-        combo.state(['readonly'])
-        combo.bind('<<ComboboxSelected>>', sensor_filter_overlay_changed)
-        combo.grid(row=row, column=col, sticky='NE')
-
-        recursive_grid_configure(overlay_frame, padx=5, pady=5)
-
         return frame
 
-    def __init_siop_options_frame(self):
-        """Initialises the SIOP options frame, used in SIOP mode."""
-
-        col = 0
-        row = 0
-
-        # frame to hold the options together
+    def __init_multi_car_options_frame(self):
+        """Initialises the multi-car options frame """
         frame = ttk.Frame(self)
         frame.columnconfigure(0, weight=1)
-
-        # ----------------------------------------
-        # SIOP or IOP plot mode selection
-        # DC 08-Dec-2015: Commenting out this section, as the new data-driven
-        # code now allows all SIOPs and IOPs to be selected at the same time.
-        # mode_frame = ttk.LabelFrame(frame, text='Select Plot Mode')
-        # mode_frame.grid(row=0, column=0, sticky='NSEW')
-
-        # def siop_mode_changed(_=None):
-            # """ SIOP mode radio button changed handler """
-            # logging.getLogger(__name__).debug(
-                # 'SIOP Plot mode: %s',
-                # self.__siop_plot_mode.get())
-            # self.__refresh_figure()
-
-        # # __siop_plot_mode holds the plot mode selection
-        # self.__siop_plot_mode = StringVar()
-        # self.__siop_plot_mode.set('siop')
-
-        # radio = ttk.Radiobutton(
-            # mode_frame,
-            # text='SIOP',
-            # variable=self.__siop_plot_mode,
-            # value='siop',
-            # command=siop_mode_changed)
-        # radio.grid(row=row, column=col, sticky='NW')
-        # col += 1
-
-        # radio = ttk.Radiobutton(
-            # mode_frame,
-            # text='IOP',
-            # variable=self.__siop_plot_mode,
-            # value='iop',
-            # command=siop_mode_changed)
-        # radio.grid(row=row, column=col, sticky='NW')
-
-        # recursive_grid_configure(mode_frame, padx=5, pady=5)
 
         # ----------------------------------------
         # frame for the plot item selection
@@ -471,41 +361,11 @@ class PlotFrame(ttk.Frame):
 
         self.__generate_plottable_item_controls(
             option_frame,
-            self.__siop_plot_items,
+            self.__multi_car_plot_items,
             items_per_row=8)
 
         recursive_grid_configure(option_frame, padx=5, pady=5)
-
         return frame
-
-    def __refresh_overlay(self):
-        """ Refreshes the sensor filter overlay. """
-
-        overlay_type = self.__sensor_response_overlay_type.get()
-        if overlay_type == 'response':
-            filter_name = self.__sensor_response_overlay_name.get()
-            filter_data = self.__sensor_filters[filter_name]
-            band_centre_wavelengths = filter_data[0]
-            sensor_filter = filter_data[1]
-            num_bands = sensor_filter.shape[0]
-
-            axes = self.__figure.add_subplot(111)
-            for band in range(num_bands):
-                band_data = sensor_filter[band, :]
-                axes.plot(
-                    band_centre_wavelengths,
-                    band_data,
-                    label='Filter Band {0}'.format(band))
-
-                self.__expand_plot(
-                    axes,
-                    left=np.min(band_centre_wavelengths) - 50,
-                    right=np.max(band_centre_wavelengths) + 50,
-                    bottom=np.min(band_data),
-                    top=np.max(band_data))
-
-        elif overlay_type == 'band_avg':
-            pass
 
     def __expand_plot(self, axes, left, right, top, bottom):
         """ Expands the plot limits to fit the given bounds.
@@ -555,9 +415,9 @@ class PlotFrame(ttk.Frame):
                 model_results = result_set.results._asdict()
 
                 # Select the plottable items list to match the current mode
-                plottable_items = self.__input_plot_items \
-                    if self.__current_plot_mode == self.PLOT_MODES.PARAMETER \
-                    else self.__siop_plot_items
+                plottable_items = self.__single_car_plot_items \
+                    if self.__current_plot_mode == self.PLOT_MODES.SINGLE_CAR \
+                    else self.__multi_car_plot_items
 
                 for plot_item in plottable_items:
                     if plot_item.control.get():
@@ -576,7 +436,6 @@ class PlotFrame(ttk.Frame):
         logging.getLogger(__name__).debug('Refreshing plot')
         self.__figure.clear()
         axes = self.__figure.add_subplot(111)
-        self.__refresh_overlay()
 
         # if self.__model.results:
         # TODO: enable plots
