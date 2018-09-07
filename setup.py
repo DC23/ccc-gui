@@ -26,6 +26,7 @@ setup(
     platforms='any',
 
     install_requires=[
+        'car-cost-calculator',
         'numpy',
         'pandas',
     ],
