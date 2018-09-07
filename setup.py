@@ -27,6 +27,8 @@ setup(
 
     install_requires=[
         'car-cost-calculator',
+        'configargparse',
+        'matplotlib',
         'numpy',
         'pandas',
     ],

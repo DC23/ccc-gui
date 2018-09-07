@@ -10,5 +10,6 @@
         //,"**/tests/**/*.py"
     ],
     "python.jediEnabled": true,
-    "gitlens.codeLens.enabled": false
+    "gitlens.codeLens.enabled": false,
+    "python.pythonPath": "/home/daniel/.virtualenvs/ccc-gui-UULmam7v/bin/python"
 }
