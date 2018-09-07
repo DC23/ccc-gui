@@ -21,7 +21,6 @@ from tkinter import (
 
 from .input_data_frame import InputDataFrame
 from .plot_frame import PlotFrame
-from .session_frame import SessionFrame
 from .siop_frame import SiopFrame
 # from ..model import Model
 
@@ -54,7 +53,7 @@ class TkView(object):
 
         Args:
             options (argparse.Namespace): the program options.
-            model (bioopti.Model): The bioopti data model.
+            model (ccc-gui.Model): The bioopti data model.
         """
         logging.getLogger(__name__).debug('Building Tk GUI')
 
@@ -121,15 +120,6 @@ class TkView(object):
         self.__input_data_notebook.add(self.__siop_frame, text=tab_name)
         self.__plot_mode[tab_name] = PlotFrame.PLOT_MODES.SIOP
 
-        # create the session saving frame and add it to the notebook
-        self.__session_frame = SessionFrame(
-            self.__input_data_notebook,
-            self.__data_changed_handler,
-            options,
-            padding=default_padding)
-        tab_name = 'Sessions'
-        self.__input_data_notebook.add(self.__session_frame, text=tab_name)
-
         # create the update plot button and add it below the notebook
         update_plot_button = ttk.Button(
             main_frame,
@@ -163,15 +153,15 @@ class TkView(object):
         check.grid(column=1, row=1, sticky='NW')
         check.grid_configure(padx=(0, default_padding), pady=default_padding)
 
-        # create the save results button
-        save_button = ttk.Button(
-            main_frame,
-            command=self.__notify_save_request,
-            text='Save')
-        save_button.grid(column=0, row=2, sticky='NW')
-        save_button.grid_configure(
-            padx=(0, default_padding),
-            pady=default_padding)
+        # # create the save results button
+        # save_button = ttk.Button(
+        #     main_frame,
+        #     command=self.__notify_save_request,
+        #     text='Save')
+        # save_button.grid(column=0, row=2, sticky='NW')
+        # save_button.grid_configure(
+        #     padx=(0, default_padding),
+        #     pady=default_padding)
 
         # ----------------------------------------
         # Right-hand side of the window: the plot control
@@ -415,7 +405,6 @@ class TkView(object):
 
         self.__input_data_frame.push_values_to_model(model)
         self.__siop_frame.push_values_to_model(model)
-        self.__session_frame.push_values_to_model(model)
         self.__plot_frame.push_values_to_model(model)
 
     def pull_values_from_model(self, model):
@@ -427,5 +416,4 @@ class TkView(object):
 
         self.__input_data_frame.pull_values_from_model(model)
         self.__siop_frame.pull_values_from_model(model)
-        self.__session_frame.pull_values_from_model(model)
         self.__plot_frame.pull_values_from_model(model)
