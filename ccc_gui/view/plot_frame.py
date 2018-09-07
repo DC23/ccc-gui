@@ -12,18 +12,18 @@ TK frame class that encapsulates the plot window.
 import logging
 from collections import namedtuple
 
+import numpy as np
 import matplotlib
 # global matplotlib options. Must be called before
 # importing anything else from matplotlib
 matplotlib.use('TkAgg')
 
-import numpy as np
 from matplotlib import style
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg,
     NavigationToolbar2TkAgg,
 )
-from matplotlib.figure import Figure
+from matplotlib.figure import Figure, SubplotParams
 from tkinter import (
     BooleanVar,
     StringVar,
@@ -229,7 +229,8 @@ class PlotFrame(ttk.Frame):
 
         self.__figure = Figure(
             figsize=self.__plot_options.size,
-            dpi=self.__plot_options.dpi)
+            dpi=self.__plot_options.dpi,
+            subplotpars=SubplotParams(left=0.05, right=0.95, top=0.95, bottom=0.05))
 
         # create the plot canvas
         canvas = FigureCanvasTkAgg(self.__figure, master=self)
@@ -460,7 +461,7 @@ class PlotFrame(ttk.Frame):
         """ Pushes all modifiable values back into the model.
 
         Args:
-            model (bioopti.Model): The bioopti data model.
+            model (ccc-gui.Model): The data model.
         """
         pass
 
@@ -468,7 +469,7 @@ class PlotFrame(ttk.Frame):
         """ Pulls all output values from the model.
 
         Args:
-            model (bioopti.Model): The bioopti data model.
+            model (ccc-gui.Model): The data model.
         """
         # We don't need to do this in the current implementation,
         # but it seems safer to assume that the model instance might change.
