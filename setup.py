@@ -42,4 +42,11 @@ setup(
         'test': [
         ],
     },
+
+    entry_points={
+        'gui_scripts': ['ccc = main:main', ],
+    },
+
+    # Is your project zip safe?
+    # zip_safe=True,
 )
