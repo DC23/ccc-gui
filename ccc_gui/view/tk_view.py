@@ -19,10 +19,8 @@ from tkinter import (
     ttk,
 )
 
-from .input_data_frame import InputDataFrame
+from .single_car_frame import SingleCarFrame
 from .plot_frame import PlotFrame
-from .siop_frame import SiopFrame
-# from ..model import Model
 
 class TkView(object):
 
@@ -91,9 +89,9 @@ class TkView(object):
         # ----------------------------------------
         # Left-hand side of the window: Notebook, Update Plot button
 
-        # create the notebook (tab control) for the Input and SIOP panels
-        self.__input_data_notebook = ttk.Notebook(main_frame)
-        self.__input_data_notebook.grid(
+        # create the notebook (tab control)
+        self.__notebook = ttk.Notebook(main_frame)
+        self.__notebook.grid(
             column=0,
             # span 2 columns, so that the update and live-update controls can
             # go side by side
@@ -101,25 +99,25 @@ class TkView(object):
             row=0,
             sticky='NW')
 
-        # create the input frame, and add it to the notebook
-        self.__input_data_frame = InputDataFrame(
-            self.__input_data_notebook,
+        # create the single car frame, and add it to the notebook
+        self.__single_car_frame = SingleCarFrame(
+            self.__notebook,
             model,
             self.__data_changed_handler,
             padding=default_padding)
-        tab_name = 'Input'
-        self.__input_data_notebook.add(self.__input_data_frame, text=tab_name)
-        self.__plot_mode[tab_name] = PlotFrame.PLOT_MODES.PARAMETER
+        tab_name = 'Single Car'
+        self.__notebook.add(self.__single_car_frame, text=tab_name)
+        self.__plot_mode[tab_name] = PlotFrame.PLOT_MODES.SINGLE_CAR
 
         # create the SIOP frame and add it to the notebook
-        self.__siop_frame = SiopFrame(
-            self.__input_data_notebook,
-            model,
-            self.__data_changed_handler,
-            padding=default_padding)
-        tab_name = 'SIOP'
-        self.__input_data_notebook.add(self.__siop_frame, text=tab_name)
-        self.__plot_mode[tab_name] = PlotFrame.PLOT_MODES.SIOP
+        # self.__siop_frame = SiopFrame(
+        #     self.__notebook,
+        #     model,
+        #     self.__data_changed_handler,
+        #     padding=default_padding)
+        # tab_name = 'SIOP'
+        # self.__notebook.add(self.__siop_frame, text=tab_name)
+        # self.__plot_mode[tab_name] = PlotFrame.PLOT_MODES.MULTI_CAR
 
         # create the update plot button and add it below the notebook
         update_plot_button = ttk.Button(
@@ -154,16 +152,6 @@ class TkView(object):
         check.grid(column=1, row=1, sticky='NW')
         check.grid_configure(padx=(0, default_padding), pady=default_padding)
 
-        # # create the save results button
-        # save_button = ttk.Button(
-        #     main_frame,
-        #     command=self.__notify_save_request,
-        #     text='Save')
-        # save_button.grid(column=0, row=2, sticky='NW')
-        # save_button.grid_configure(
-        #     padx=(0, default_padding),
-        #     pady=default_padding)
-
         # ----------------------------------------
         # Right-hand side of the window: the plot control
         self.__plot_frame = PlotFrame(
@@ -186,7 +174,7 @@ class TkView(object):
             sticky='NSEW')
 
         # add a bit of space around the major window elements
-        self.__input_data_notebook.grid_configure(padx=(0, 3), pady=2)
+        self.__notebook.grid_configure(padx=(0, 3), pady=2)
         self.__plot_frame.grid_configure(padx=(3, 0), pady=2)
 
         # update the root window so it can calculate the optimal window size
@@ -203,8 +191,8 @@ class TkView(object):
         # sent for the initial selected tab. Now that all the controls are
         # created, we can let the plot frame know which tab is selected.
         self.__notify_tab_changed(
-            self.__input_data_notebook.tab(
-                self.__input_data_notebook.select(),
+            self.__notebook.tab(
+                self.__notebook.select(),
                 'text'))
 
     def __notify_tab_changed(self, tab_name):
@@ -283,11 +271,11 @@ class TkView(object):
         def notebook_tab_changed(_):
             """ Notebook tab changed event handler """
 
-            tab_window_id = self.__input_data_notebook.select()
-            tab_name = self.__input_data_notebook.tab(tab_window_id, 'text')
+            tab_window_id = self.__notebook.select()
+            tab_name = self.__notebook.tab(tab_window_id, 'text')
             self.__notify_tab_changed(tab_name)
 
-        self.__input_data_notebook.bind(
+        self.__notebook.bind(
             '<<NotebookTabChanged>>',
             notebook_tab_changed)
 
@@ -395,20 +383,18 @@ class TkView(object):
         """ Pushes all modifiable values back into the model.
 
         Args:
-            model (bioopti.Model): The bioopti data model.
+            model (ccc-gui.Model): The data model.
         """
 
-        self.__input_data_frame.push_values_to_model(model)
-        self.__siop_frame.push_values_to_model(model)
+        self.__single_car_frame.push_values_to_model(model)
         self.__plot_frame.push_values_to_model(model)
 
     def pull_values_from_model(self, model):
         """ Pulls all output values from the model, and triggers a plot refresh.
 
         Args:
-            model (bioopti.Model): The bioopti data model.
+            model (ccc-gui.Model): The data model.
         """
 
-        self.__input_data_frame.pull_values_from_model(model)
-        self.__siop_frame.pull_values_from_model(model)
+        self.__single_car_frame.pull_values_from_model(model)
         self.__plot_frame.pull_values_from_model(model)

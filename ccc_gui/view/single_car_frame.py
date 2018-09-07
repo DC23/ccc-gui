@@ -15,15 +15,15 @@ from tkinter import (
 from .utilities import recursive_grid_configure
 
 
-class InputDataFrame(ttk.Frame):
+class SingleCarFrame(ttk.Frame):
 
     """
-    main parameter entry form.
+    Tk frame for a single car examination
     """
 
     def __init__(self, parent, model, data_changed, **kwargs):
         """
-        Initialise the parameter data input frame.
+        Initialise the frame.
 
         Args:
             parent (tkinter.ttk.Frame): the parent frame.

@@ -8,17 +8,6 @@ Utility class for binding a display name, a model result, and a Tk checkbox.
 # pylint: disable=redefined-builtin
 # pylint: disable=wildcard-import
 # pylint: disable=unused-import
-
-# Ensure backwards compatibility with Python 2
-from __future__ import (
-    absolute_import,
-    division,
-    print_function,
-    unicode_literals,
-)
-from builtins import *
-
-
 # pylint: disable=too-many-ancestors
 # Disabling the too-few-public-methods warning, as I find this small class
 # cleaner than named tuples or dictionaries

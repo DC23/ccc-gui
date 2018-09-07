@@ -98,7 +98,7 @@ class PlotFrame(ttk.Frame):
 
     # Define the plot modes, as a named tuple instance where the attributes have
     # the same value as their names.
-    __plot_modes = ['PARAMETER', 'SIOP']
+    __plot_modes = ['SINGLE_CAR', 'MULTI_CAR']
     __PlotModeType = namedtuple('__PlotModes', __plot_modes)
     PLOT_MODES = __PlotModeType(*__plot_modes)
 
@@ -115,13 +115,13 @@ class PlotFrame(ttk.Frame):
 
         self.__current_plot_mode = plot_mode
 
-        if plot_mode == self.PLOT_MODES.PARAMETER:
-            self.__input_options.grid()
-            self.__siop_options.grid_remove()
+        if plot_mode == self.PLOT_MODES.SINGLE_CAR:
+            self.__single_car_options.grid()
+            self.__multi_car_options.grid_remove()
 
-        elif plot_mode == self.PLOT_MODES.SIOP:
-            self.__input_options.grid_remove()
-            self.__siop_options.grid()
+        elif plot_mode == self.PLOT_MODES.MULTI_CAR:
+            self.__single_car_options.grid_remove()
+            self.__multi_car_options.grid()
 
         self.__refresh_figure()
 
@@ -196,7 +196,7 @@ class PlotFrame(ttk.Frame):
         self.__init_plot_controls(row=1)
 
         # default to parameter mode
-        self.set_plot_mode(self.PLOT_MODES.PARAMETER)
+        self.set_plot_mode(self.PLOT_MODES.SINGLE_CAR)
 
         self.__refresh_figure()
 
@@ -255,12 +255,12 @@ class PlotFrame(ttk.Frame):
             column (int): the first column to use.
         """
 
-        self.__input_options = self.__init_input_options_frame()
-        self.__input_options.grid(row=row, column=column, sticky='NSEW')
+        self.__single_car_options = self.__init_input_options_frame()
+        self.__single_car_options.grid(row=row, column=column, sticky='NSEW')
         row += 1
 
-        self.__siop_options = self.__init_siop_options_frame()
-        self.__siop_options.grid(row=row, column=column, sticky='NSEW')
+        self.__multi_car_options = self.__init_siop_options_frame()
+        self.__multi_car_options.grid(row=row, column=column, sticky='NSEW')
 
     def __create_checkbutton(self, parent, text, value=False):
         """
