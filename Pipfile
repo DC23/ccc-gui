@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 numpy = "*"
 pandas = "*"
+dash = "*"
+dash-html-components = "*"
+dash-core-components = "*"
 
 [dev-packages]
 bumpversion = "*"
