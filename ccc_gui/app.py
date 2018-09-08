@@ -1,3 +1,6 @@
+'''Main app for ccc GUI'''
+
+from exceptions import ImproperlyConfigured
 import os
 import dash_core_components as dcc
 import dash_html_components as html
@@ -7,7 +10,6 @@ from flask import Flask
 from dash import Dash
 from dash.dependencies import Input, Output, State
 from dotenv import load_dotenv
-from exceptions import ImproperlyConfigured
 
 DOTENV_PATH = os.path.join(os.path.dirname(__file__), ".env")
 load_dotenv(DOTENV_PATH)
@@ -42,11 +44,11 @@ external_js = []
 external_css = [
     # dash stylesheet
     "https://codepen.io/chriddyp/pen/bWLwgP.css",
-    "https://fonts.googleapis.com/css?family=Lobster|Raleway",
-    "//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+    # "https://fonts.googleapis.com/css?family=Lobster|Raleway",
+    # "//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
 ]
 
-theme = {"font-family": "Lobster", "background-color": "#e0e0e0"}
+theme = {"font-family": "Sans", "background-color": "#e0e0e0"}
 
 
 def create_header():
@@ -105,7 +107,7 @@ def create_content():
                         dcc.Markdown(
                             """
                         This is a markdown description created with a Dash Core Component.
-                         
+
                         > A {number} days of training to develop.
                         > Ten {number} days of training to polish.
                         >
@@ -142,22 +144,14 @@ def create_footer():
             ),
         ]
     )
-    p1 = html.P(
-        children=[
-            html.Span("Data from "),
-            html.A("some website", href="https://some-website.com/", target="_blank"),
-        ]
-    )
-    a_fa = html.A(
-        children=[
-            html.I([], className="fa fa-font-awesome fa-2x"), html.Span("Font Awesome")
-        ],
-        style={"text-decoration": "none"},
-        href="http://fontawesome.io/",
-        target="_blank",
-    )
+    # p1 = html.P(
+    #     children=[
+    #         html.Span("Data from "),
+    #         html.A("some website", href="https://some-website.com/", target="_blank"),
+    #     ]
+    # )
 
-    div = html.Div([p0, p1, a_fa])
+    div = html.Div([p0])
     footer = html.Footer(children=div, style=footer_style)
     return footer
 
