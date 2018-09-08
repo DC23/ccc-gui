@@ -15,7 +15,6 @@ python-dotenv = "*"
 
 [dev-packages]
 bumpversion = "*"
-black = "*"
 pylint = "*"
 pytest = "*"
 rope = "*"
