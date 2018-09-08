@@ -3,7 +3,7 @@
 
 import logging
 
-# import car_cost_calculator  # for the version number
+import car_cost_calculator  # for the version number
 
 # from ..exceptions import ModelValidationError
 
@@ -22,9 +22,9 @@ class Model():
         """
         assert options
         # TODO: add cost model object
-        self.__hack = None
         log = logging.getLogger(__name__)
         log.info('Initialising model')
+        self.__car_cost = car_cost_calculator.CarCosts()
 
     def calculate(self):
         """ Calculates the model.
