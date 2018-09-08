@@ -4,18 +4,22 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+car-cost-calculator = {editable = true, path = "./../car-cost-calculator"}
+dash = "*"
+dash-core-components = "*"
+dash-html-components = "*"
+gunicorn = "*"
 numpy = "*"
 pandas = "*"
-dash = "*"
-dash-html-components = "*"
-dash-core-components = "*"
-car-cost-calculator = {editable = true, path = "./../car-cost-calculator"}
+python-dotenv = "*"
 
 [dev-packages]
 bumpversion = "*"
+black = "*"
 pylint = "*"
-yapf = "*"
+pytest = "*"
 rope = "*"
+yapf = "*"
 
 [requires]
 python_version = "3.6"
