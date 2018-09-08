@@ -46,7 +46,6 @@ setup(
     },
 
     entry_points={
-        'gui_scripts': ['ccc = ccc_gui:main', ],
     },
 
     # Is your project zip safe?
