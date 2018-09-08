@@ -9,6 +9,7 @@ pandas = "*"
 dash = "*"
 dash-html-components = "*"
 dash-core-components = "*"
+car-cost-calculator = {editable = true, path = "./../car-cost-calculator"}
 
 [dev-packages]
 bumpversion = "*"
