@@ -105,7 +105,7 @@ def create_content():
                         dcc.Markdown(
                             """
                         This is a markdown description created with a Dash Core Component.
-                        
+                         
                         > A {number} days of training to develop.
                         > Ten {number} days of training to polish.
                         >
