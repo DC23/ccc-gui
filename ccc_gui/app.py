@@ -36,7 +36,7 @@ try:
 except KeyError:
     raise ImproperlyConfigured("SECRET KEY not set in .env:")
 
-app = Dash(name=app_name, server=server, csrf_protect=True)
+app = Dash(name=app_name, server=server)
 app.title = app_name
 
 external_js = []
@@ -68,7 +68,13 @@ def create_content():
         html.Div(
             [
                 """Laboris adipisicing enim do ipsum sint adipisicing irure elit laborea.
-                Ea nisi sint irure ullamco non."""
+                Ea nisi sint irure ullamco non.
+                Do incididunt ipsum exercitation enim eiusmod anim. Ex qui
+                tempor excepteur in ea magna nulla Lorem nulla sint labore
+                proident qui. Ex anim minim quis labore non qui Lorem. Ad duis
+                anim officia est culpa excepteur proident officia excepteur
+                laborum non. Tempor excepteur est ipsum do dolore nulla ut ipsum.
+                Sint elit non excepteur tempor amet. Duis sunt commodo id id."""
             ],
             className="col-md-4 well",
         )
@@ -76,12 +82,21 @@ def create_content():
 
     outputs = html.Div(
         [
-            """Do incididunt ipsum exercitation enim eiusmod anim. Ex qui
-            tempor excepteur in ea magna nulla Lorem nulla sint labore
-            proident qui. Ex anim minim quis labore non qui Lorem. Ad duis
-            anim officia est culpa excepteur proident officia excepteur
-            laborum non. Tempor excepteur est ipsum do dolore nulla ut ipsum.
-            Sint elit non excepteur tempor amet. Duis sunt commodo id id."""
+            dcc.Graph(
+                id="graph-0",
+                figure={
+                    "data": [
+                        {"x": [1, 2, 3], "y": [4, 1, 2], "type": "bar", "name": "SF"},
+                        {
+                            "x": [1, 2, 3],
+                            "y": [2, 4, 5],
+                            "type": "bar",
+                            "name": u"Montréal",
+                        },
+                    ],
+                    "layout": {"title": "Dash Data Visualization"},
+                },
+            )
         ],
         className="col-md-8 text-justify",
     )
