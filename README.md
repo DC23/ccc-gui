@@ -13,6 +13,12 @@ Dash GUI for the Car Cost Calculator
 pipenv install --dev
 ```
 
+3. To install [`black`](https://github.com/ambv/black) for code formatting, you need to install manually with pip after creating the main environment with pipenv. This is because `black` seems to be permanently in pre-release mode and I don't want to globally enable pre-releases in the `Pipfile`. The command is:
+
+```shell
+pipenv run pip install black
+```
+
 ## Run
 
 Check that the virtual environment is activated, then run:
