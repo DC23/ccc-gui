@@ -1,5 +1,4 @@
 {
-    "python.pythonPath": "/home/daniel/.virtualenvs/hccalc_flask-m2i8QoXF/bin/python",
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
     "trailing-spaces.trimOnSave": true,
@@ -9,7 +8,8 @@
         "--max-attributes=12"
     ],
     "python.formatting.autopep8Args": [
-        "--max-line-length=120"
+        "--max-line-length=120",
+    ],
     "python.linting.ignorePatterns": [
         ".vscode/*.py",
         "**/site-packages/**/*.py"
@@ -17,5 +17,5 @@
     ],
     "python.jediEnabled": true,
     "gitlens.codeLens.enabled": false,
-    "python.pythonPath": "/home/daniel/.virtualenvs/ccc-gui-UULmam7v/bin/python"
+    "python.pythonPath": "/home/daniel/.virtualenvs/ccc-gui-UULmam7v/bin/python",
 }
