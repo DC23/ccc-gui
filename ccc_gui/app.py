@@ -67,7 +67,8 @@ def create_content():
     inputs = html.Div(
         html.Div(
             [
-                """Laboris adipisicing enim do ipsum sint adipisicing irure elit labore. Ea nisi sint irure ullamco non."""
+                """Laboris adipisicing enim do ipsum sint adipisicing irure elit laborea.
+                Ea nisi sint irure ullamco non."""
             ],
             className="col-md-4 well",
         )
