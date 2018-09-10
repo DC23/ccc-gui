@@ -11,6 +11,8 @@ from flask import Flask
 from dash import Dash
 from dash.dependencies import Input, Output, State
 from dotenv import load_dotenv
+from exceptions import ImproperlyConfigured
+
 
 if "DYNO" in os.environ:
     # Heroku-specific config
@@ -125,12 +127,12 @@ def create_footer():
         ],
         className="navbar navbar-default navbar-fixed-bottom",
     )
+
     return footer
 
 
 def serve_layout():
     """page layout function"""
-    print("serve page")
     layout = html.Div(
         [create_header(), create_content(), create_footer()],
         className="container-fluid",
