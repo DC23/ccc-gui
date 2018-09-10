@@ -15,8 +15,7 @@ python-dotenv = "*"
 
 [dev-packages]
 bumpversion = "*"
-pylint = "*"
-pytest = "*"
+pylama = "*"
 rope = "*"
 yapf = "*"
 
