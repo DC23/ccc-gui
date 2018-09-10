@@ -3,13 +3,13 @@
 # pylint: disable=C0103
 from exceptions import ImproperlyConfigured
 import os
-import dash_core_components as dcc
+# import dash_core_components as dcc
 import dash_html_components as html
 import plotly.plotly as py
-import plotly.graph_objs as go
+# import plotly.graph_objs as go
 from flask import Flask
 from dash import Dash
-from dash.dependencies import Input, Output, State
+# from dash.dependencies import Input, Output, State
 from dotenv import load_dotenv
 
 DOTENV_PATH = os.path.join(os.path.dirname(__file__), '.env')
@@ -53,7 +53,7 @@ def create_header():
     header = html.Header(
         html.H1(
             children=app_name,
-            className='jumbotron',
+            # className='well',
             id='header',
             style={},
         ))
@@ -62,12 +62,30 @@ def create_header():
 
 def create_content():
     '''page content'''
-    # TODO: Controls
-    # TODO: Chart
+    inputs = html.Div(
+        className='col-lg-5',
+        children=[
+            '''Laboris adipisicing enim do ipsum sint adipisicing irure elit labore.
+            Ea nisi sint irure ullamco non.'''
+        ])
+
+    outputs = html.Div(
+        className='col-lg-7',
+        children=[
+            '''Do incididunt ipsum exercitation enim eiusmod anim. Ex qui
+            tempor excepteur in ea magna nulla Lorem nulla sint labore
+            proident qui. Ex anim minim quis labore non qui Lorem. Ad duis
+            anim officia est culpa excepteur proident officia excepteur
+            laborum non. Tempor excepteur est ipsum do dolore nulla ut ipsum.
+            Sint elit non excepteur tempor amet. Duis sunt commodo id id.''',
+        ])
+
     content = html.Div(
-        'content goes here',
-        id='content',
-    )
+        id='content', className='row', children=[
+            inputs,
+            outputs,
+        ])
+
     return content
 
 
@@ -75,23 +93,26 @@ def create_footer():
     '''page footer'''
     p0 = html.P(children=[
         html.Span('Built with '),
-        html.A('Plotly Dash', href='https://github.com/plotly/dash', target='_blank'),
+        html.A(
+            'Plotly Dash',
+            href='https://github.com/plotly/dash',
+            target='_blank'),
     ])
 
     footer = html.Footer(
         children=html.Div([p0]),
-        className='page-footer',
+        className='footer navbar-fixed-bottom',
         style={})
     return footer
 
 
 def serve_layout():
     '''page layout function'''
+    print('serve page')
     layout = html.Div(
-        children=[
-            create_header(),
-            create_content(),
-            create_footer()],
+        children=[create_header(),
+                  create_content(),
+                  create_footer()],
         className='container',
         style={},
     )
