@@ -28,7 +28,7 @@ except KeyError:
     raise ImproperlyConfigured("Plotly credentials not set in .env")
 
 # app init
-app_name = "Car Cost Calculator GUI"
+app_name = "Car Cost Calculator"
 server = Flask(app_name)
 
 try:
@@ -37,28 +37,40 @@ except KeyError:
     raise ImproperlyConfigured("SECRET KEY not set in .env:")
 
 app = Dash(name=app_name, server=server, csrf_protect=True)
+app.title = app_name
 
 external_js = []
 
 external_css = [
-    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
+    "https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css",
+    # "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
     "https://codepen.io/chriddyp/pen/bWLwgP.css",
 ]
 
 
 def create_header():
     """page header"""
-    header = html.Header(html.H1(app_name, id="header", className="well", style={}))
+    header = html.Nav(
+        [
+            html.Div(
+                [html.Div([app_name], className="navbar-brand navbar-left")],
+                className="container",
+            )
+        ],
+        className="navbar navbar-default navbar-fixed-top",
+    )
     return header
 
 
 def create_content():
     """page content"""
     inputs = html.Div(
-        [
-            """Laboris adipisicing enim do ipsum sint adipisicing irure elit labore. Ea nisi sint irure ullamco non."""
-        ],
-        className="col-lg-5",
+        html.Div(
+            [
+                """Laboris adipisicing enim do ipsum sint adipisicing irure elit labore. Ea nisi sint irure ullamco non."""
+            ],
+            className="col-md-4 well",
+        )
     )
 
     outputs = html.Div(
@@ -70,17 +82,22 @@ def create_content():
             laborum non. Tempor excepteur est ipsum do dolore nulla ut ipsum.
             Sint elit non excepteur tempor amet. Duis sunt commodo id id."""
         ],
-        className="col-lg-7",
+        className="col-md-8 text-justify",
     )
 
-    content = html.Div([inputs, outputs], id="content", className="row")
+    content = html.Div(
+        [html.Div([inputs, outputs], className="row")],
+        id="content",
+        className="container",
+        style={"padding-top": "80px"},
+    )
 
     return content
 
 
 def create_footer():
     """page footer"""
-    footer = html.Div(
+    footer = html.Footer(
         [
             html.Div(
                 [
@@ -99,7 +116,8 @@ def serve_layout():
     """page layout function"""
     print("serve page")
     layout = html.Div(
-        [create_header(), create_content(), create_footer()], className="container"
+        [create_header(), create_content(), create_footer()],
+        className="container-fluid",
     )
     return layout
 
