@@ -1,0 +1,6 @@
+/* I like my form labels a bit lighter than what I am getting with Bootstrap and the Plotly css */
+label {
+    /* padding-right: 8px; */
+    font-weight: normal;
+    font-size: 12pt;
+}

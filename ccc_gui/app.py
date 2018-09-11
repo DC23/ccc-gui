@@ -52,35 +52,80 @@ external_css = [
 
 def create_header():
     """page header"""
-    header = html.Nav(
-        [
-            html.Div(
-                [html.Div([app_name], className="navbar-brand navbar-left")],
-                className="container",
-            )
-        ],
-        className="navbar navbar-default navbar-fixed-top",
+    header = html.Header(
+        html.Nav(
+            [
+                html.Div(
+                    [html.Div([app_name], className="navbar-brand navbar-left")],
+                    className="container",
+                )
+            ],
+            className="navbar navbar-default navbar-fixed-top",
+        )
     )
     return header
+
+
+def create_form_group(label, control):
+    return html.Div([label, control], className="form-group")
 
 
 def create_content():
     """page content"""
     # placeholder for the input controls
     inputs = html.Div(
-        html.Div(
-            [
-                """Laboris adipisicing enim do ipsum sint adipisicing irure elit laborea.
-                Ea nisi sint irure ullamco non.
-                Do incididunt ipsum exercitation enim eiusmod anim. Ex qui
-                tempor excepteur in ea magna nulla Lorem nulla sint labore
-                proident qui. Ex anim minim quis labore non qui Lorem. Ad duis
-                anim officia est culpa excepteur proident officia excepteur
-                laborum non. Tempor excepteur est ipsum do dolore nulla ut ipsum.
-                Sint elit non excepteur tempor amet. Duis sunt commodo id id."""
-            ],
-            className="col-md-4 well",
-        )
+        [
+            create_form_group(
+                html.Label("Dropdown"),
+                dcc.Dropdown(
+                    options=[
+                        {"label": "New York City", "value": "NYC"},
+                        {"label": u"Montréal", "value": "MTL"},
+                        {"label": "San Francisco", "value": "SF"},
+                    ],
+                    value="MTL",
+                ),
+            ),
+            create_form_group(
+                html.Label("Radio Items"),
+                dcc.RadioItems(
+                    options=[
+                        {"label": "New York City", "value": "NYC"},
+                        {"label": u"Montréal", "value": "MTL"},
+                        {"label": "San Francisco", "value": "SF"},
+                    ],
+                    value="MTL",
+                ),
+            ),
+            create_form_group(
+                html.Label("Checkboxes"),
+                dcc.Checklist(
+                    options=[
+                        {"label": "New York City", "value": "NYC"},
+                        {"label": u"Montréal", "value": "MTL"},
+                        {"label": "San Francisco", "value": "SF"},
+                    ],
+                    values=["MTL", "SF"],
+                ),
+            ),
+            create_form_group(
+                html.Label("Text Input"),
+                dcc.Input(value="MTL", type="text", className="form-group"),
+            ),
+            create_form_group(
+                html.Label("Slider"),
+                dcc.Slider(
+                    min=0,
+                    max=9,
+                    marks={
+                        i: "Label {}".format(i) if i == 1 else str(i)
+                        for i in range(1, 6)
+                    },
+                    value=5,
+                ),
+            ),
+        ],
+        className="col-md-4",
     )
 
     # placeholder for some charts
