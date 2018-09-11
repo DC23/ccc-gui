@@ -11,7 +11,6 @@ from flask import Flask
 from dash import Dash
 from dash.dependencies import Input, Output, State
 from dotenv import load_dotenv
-from exceptions import ImproperlyConfigured
 
 
 if "DYNO" in os.environ:
@@ -45,7 +44,8 @@ external_js = []
 
 external_css = [
     "https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css",
-    # "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
+    # "https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
+    "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
     "https://codepen.io/chriddyp/pen/bWLwgP.css",
 ]
 
@@ -119,8 +119,17 @@ def create_footer():
         [
             html.Div(
                 [
-                    html.P("Footer text - LHS", className="navbar-text pull-left"),
-                    html.P("Footer text - RHS", className="navbar-text pull-right"),
+                    html.P(
+                        [html.Span("{0}, version 0.1.0".format(app_name), className="text-muted")],
+                        className="navbar-text pull-left",
+                    ),
+                    html.P(
+                        [
+                            html.Span(className="fa fa-copyright text-muted"),
+                            html.Span(" 2018, blah blah", className="text-muted"),
+                        ],
+                        className="navbar-text pull-right",
+                    ),
                 ],
                 className="container",
             )
