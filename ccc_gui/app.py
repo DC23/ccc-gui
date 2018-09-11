@@ -120,7 +120,12 @@ def create_footer():
             html.Div(
                 [
                     html.P(
-                        [html.Span("{0}, version 0.1.0".format(app_name), className="text-muted")],
+                        [
+                            html.Span(
+                                "{0}, version 0.1.0".format(app_name),
+                                className="text-muted",
+                            )
+                        ],
                         className="navbar-text pull-left",
                     ),
                     html.P(
