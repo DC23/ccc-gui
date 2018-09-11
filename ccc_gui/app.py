@@ -66,6 +66,7 @@ def create_header():
 
 def create_content():
     """page content"""
+    # placeholder for the input controls
     inputs = html.Div(
         html.Div(
             [
@@ -82,6 +83,7 @@ def create_content():
         )
     )
 
+    # placeholder for some charts
     outputs = html.Div(
         [
             dcc.Graph(
