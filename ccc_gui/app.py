@@ -115,13 +115,7 @@ def create_content():
             create_form_group(
                 html.Label("Slider"),
                 dcc.Slider(
-                    min=0,
-                    max=9,
-                    marks={
-                        i: "Label {}".format(i) if i == 1 else str(i)
-                        for i in range(1, 6)
-                    },
-                    value=5,
+                    min=0, max=9, marks={i: str(i) for i in range(10)}, value=5
                 ),
             ),
         ],
@@ -152,9 +146,8 @@ def create_content():
 
     content = html.Div(
         [html.Div([inputs, outputs], className="row")],
-        id="content",
+        id="main-content",
         className="container",
-        style={"padding-top": "80px"},
     )
 
     return content
@@ -173,19 +166,20 @@ def create_footer():
                                 className="text-muted",
                             )
                         ],
-                        className="navbar-text pull-left",
+                        className="navbar-text pull-left footer-text",
                     ),
                     html.P(
                         [
                             html.Span(className="fa fa-copyright text-muted"),
                             html.Span(" 2018, blah blah", className="text-muted"),
                         ],
-                        className="navbar-text pull-right",
+                        className="navbar-text pull-right footer-text",
                     ),
                 ],
                 className="container",
             )
         ],
+        id="pagefooter",
         className="navbar navbar-default navbar-fixed-bottom",
     )
 
