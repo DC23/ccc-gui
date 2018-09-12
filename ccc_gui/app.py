@@ -176,10 +176,9 @@ def create_footer():
                         className="navbar-text pull-right footer-text",
                     ),
                 ],
-                className="container",
             )
         ],
-        id="pagefooter",
+        id="main-footer",
         className="navbar navbar-default navbar-fixed-bottom",
     )
 

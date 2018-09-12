@@ -10,11 +10,19 @@ label {
 }
 
 /* Shrink the page footer */
-#pagefooter {
+#main-footer {
+    padding-left: 25px;
+    padding-right: 25px;
     min-height: 35px;
     height: 35px;
 }
 .footer-text {
+    font-size: small;
     padding-top: 5px;
     margin: 2px;
+}
+
+/* Add an option for borderless panels */
+.panel-borderless {
+    border: 0;
 }
