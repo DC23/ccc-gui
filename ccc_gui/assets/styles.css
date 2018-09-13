@@ -1,21 +1,43 @@
-/* I like my form labels a bit lighter than what I am getting with Bootstrap and the Dash css */
-label {
-    font-weight: normal;
-    font-size: 12pt;
+/* ------------------------------------------------------------------------------------- */
+
+/* Make form labels a bit lighter than what I am getting with Bootstrap and the Dash css */
+
+/* The main form-group labels */
+
+div.form-group>label {
+    /* font-weight: normal; */
+    font-size: medium;
 }
 
+/* The sub-labels in a form-group, such as checkbox or radio button labels */
+
+div.form-group>div>label {
+    font-weight: normal;
+    font-size: medium;
+    margin-right: 5px;
+}
+
+div.form-group>div>label>input {
+    margin-right: 4px;
+}
+
+/* ------------------------------------------------------------------------------------- */
+
 /* Make sure the main content is placed below the fixed navbar */
+
 #main-content {
     padding-top: 70px;
 }
 
 /* Shrink the page footer */
+
 #main-footer {
     padding-left: 25px;
     padding-right: 25px;
     min-height: 35px;
     height: 35px;
 }
+
 .footer-text {
     font-size: small;
     padding-top: 5px;
@@ -23,6 +45,7 @@ label {
 }
 
 /* Add an option for borderless panels */
+
 .panel-borderless {
     border: 0;
 }
