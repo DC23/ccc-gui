@@ -51,7 +51,12 @@ external_css = [
 
 
 def create_header():
-    """page header"""
+    """Creates the page header.
+
+    Returns:
+        Dash HTML Object: The Dash HTML object representing the page header.
+    """
+
     header = html.Header(
         html.Nav(
             [
@@ -114,9 +119,7 @@ def create_content():
             ),
             create_form_group(
                 html.Label("Slider"),
-                dcc.Slider(
-                    min=0, max=9, marks={i: str(i) for i in range(10)}, value=5
-                ),
+                dcc.Slider(min=0, max=9, marks={i: str(i) for i in range(10)}, value=5),
             ),
         ],
         className="col-md-4",
@@ -175,7 +178,7 @@ def create_footer():
                         ],
                         className="navbar-text pull-right footer-text",
                     ),
-                ],
+                ]
             )
         ],
         id="main-footer",
