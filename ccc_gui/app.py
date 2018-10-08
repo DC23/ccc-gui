@@ -77,55 +77,47 @@ def create_form_group(label, control):
 
 def create_content():
     """page content"""
-    # placeholder for the input controls
+    # input controls
     inputs = html.Div(
         [
-            create_form_group(
-                html.Label("Dropdown"),
-                dcc.Dropdown(
-                    options=[
-                        {"label": "New York City", "value": "NYC"},
-                        {"label": u"Montréal", "value": "MTL"},
-                        {"label": "San Francisco", "value": "SF"},
-                    ],
-                    value="MTL",
-                ),
+            html.Div(
+                [
+                    create_form_group(
+                        html.Label("Purchase Price"),
+                        dcc.Input(type="number", min=1e3, max=2e5, step=1000, value=35000),
+                    ),
+                    create_form_group(
+                        html.Label("Fuel Economy (L/100km)"),
+                        dcc.Input(type="number", min=0, max=30, step=0.1, value=6.0),
+                    ),
+                    create_form_group(
+                        html.Label("KM per Year"),
+                        dcc.Input(type="number", min=0, max=2e5, step=5000, value=15000),
+                    ),
+                    create_form_group(
+                        html.Label("Age at Purchase"),
+                        dcc.Input(type="number", min=0, max=30, step=1, value=0),
+                    ),
+                    create_form_group(
+                        html.Label("Depreciation Rate (first 3 years)"),
+                        dcc.Input(type="number", min=0, max=100, step=5, value=19),
+                    ),
+                    create_form_group(
+                        html.Label("Depreciation Rate (after 3 years)"),
+                        dcc.Input(type="number", min=0, max=100, step=5, value=10),
+                    ),
+                ],
+                className="col-md-4",
             ),
-            create_form_group(
-                html.Label("Radio Items"),
-                dcc.RadioItems(
-                    options=[
-                        {"label": "New York City", "value": "NYC"},
-                        {"label": u"Montréal", "value": "MTL"},
-                        {"label": "San Francisco", "value": "SF"},
-                    ],
-                    value="MTL",
-                ),
-            ),
-            create_form_group(
-                html.Label("Checkboxes"),
-                dcc.Checklist(
-                    options=[
-                        {"label": "New York City", "value": "NYC"},
-                        {"label": u"Montréal", "value": "MTL"},
-                        {"label": "San Francisco", "value": "SF"},
-                    ],
-                    values=["MTL", "SF"],
-                ),
-            ),
-            create_form_group(
-                html.Label("Text Input"),
-                dcc.Input(value="MTL", type="text", className="form-group"),
-            ),
-            create_form_group(
-                html.Label("Slider"),
-                dcc.Slider(min=0, max=9, marks={i: str(i) for i in range(10)}, value=5),
-            ),
-        ],
-        className="col-md-4",
+            # html.Div(
+            #     [
+            #     ],
+            #     className="col-md-2",
+            # ),
+        ]
     )
 
-    # placeholder for some charts
+    # outputs
     outputs = html.Div(
         [
             dcc.Graph(
@@ -174,7 +166,7 @@ def create_footer():
                     html.P(
                         [
                             html.Span(className="fa fa-copyright text-muted"),
-                            html.Span(" 2018, blah blah", className="text-muted"),
+                            html.Span(" 2018, jugglindan", className="text-muted"),
                         ],
                         className="navbar-text pull-right footer-text",
                     ),
